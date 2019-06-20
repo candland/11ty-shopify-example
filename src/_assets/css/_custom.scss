@@ -1,0 +1,80 @@
+// Bootstrap overrides
+//
+// Copy variables from `_variables.scss` to this file to override default values
+// without modifying source files.
+
+// https://getbootstrap.com/docs/4.0/getting-started/theming/
+// See https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss
+
+// Colours
+
+// Uncomment and customise as required
+// $brand-primary:             #f7df1e;
+
+// Options
+
+$enable-flex:               true;
+$enable-rounded:            false;
+$enable-shadows:            false;
+$enable-gradients:          false;
+$enable-transitions:        true;
+
+// Color
+
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #111111 !default;
+
+
+$primary:         #B35B9E; // pink
+$secondary:       #4F4645;
+$success:         #4F7859;
+$info:            #536278;
+$warning:         #D9A96A;
+$danger:          #A64949;
+
+// $font-weight-base:            $font-weight-normal !default;
+
+// Typography
+
+$font-family-sans-serif: "Time New Roman", serif;
+// $font-family-base:       $font-family-sans-serif;
+$font-family-base:       Verdana, Arial, sans-serif;
+$font-family-monospace:  Consolas, "Courier New", monospace;
+
+$headings-font-family: "Special Elite", monospace;
+$headings-font-weight: 600;
+$headings-line-height: 1.5;
+$headings-color: #495057;
+// $headings-color: #000000;
+
+$link-color: #144880;
+
+$line-height-base:            1.7 !default;
+$line-height-lg:              1.9 !default;
+$line-height-sm:              1.5 !default;
+
+// $font-weight-base:            $font-weight-normal !default;
+// $line-height-base:            1.5 !default;
+
+// $h1-font-size:                $font-size-base * 2.5 !default;
+// $h2-font-size:                $font-size-base * 2 !default;
+// $h3-font-size:                $font-size-base * 1.75 !default;
+// $h4-font-size:                $font-size-base * 1.5 !default;
+// $h5-font-size:                $font-size-base * 1.25 !default;
+// $h6-font-size:                $font-size-base !default;
+
+// $border-width:                1px !default;
+// $border-color:                $gray-300 !default;
+//
+// $border-radius:               .25rem !default;
+// $border-radius-lg:            .3rem !default;
+// $border-radius-sm:            .2rem !default;

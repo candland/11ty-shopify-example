@@ -1,0 +1,20 @@
+---
+title: Collections
+layout: default
+---
+
+<div class="crumbs">
+  <a href="/">home</a> / collections
+</div>
+
+<article class="collections">
+  <h1>Collections</h1>
+
+  {% set startDeck = cycler("<div class=\"row mb-5\">", "", "") %}
+  {% set endDeck = cycler("", "", "</div") %}
+  {% for collection in colls | filterFrontpage %}
+    {{ startDeck.next() | safe }}
+      {% include 'collection_link.njk' %}
+    {{ endDeck.next() | safe }}
+  {% endfor %}
+</article>

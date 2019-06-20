@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ (page.lang or site.lang or "en") }}">
+  {% include "head.njk" %}
+  <body>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          {% include "header.njk" %}
+
+          {{ content | safe }}
+        </div>
+      </div>
+    </div>
+
+    {% include "footer.njk" %}
+
+    <!-- JavaScript -->
+    <script src="/assets/js/index.js"></script>
+    <script type="text/javascript" async
+       src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=MhENWp"></script>
+  </body>
+</html>

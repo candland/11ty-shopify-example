@@ -1,0 +1,22 @@
+<div class="collections pt-5 mb-5">
+  {% set startDeck = cycler("<div class=\"row mb-5\">", "", "") %}
+  {% set endDeck = cycler("", "", "</div") %}
+  {% for collection in colls | filterFrontpage %}
+    {{ startDeck.next() | safe }}
+      {% include 'collection_link.njk' %}
+    {{ endDeck.next() | safe }}
+  {% endfor %}
+</div>
+
+<div class="products pt-5 mb-5">
+  {% set startDeck = cycler("<div class=\"row mb-5\">", "", "") %}
+  {% set endDeck = cycler("", "", "</div") %}
+  {% for product in products | forFrontpage %}
+    {% set minPrice = product.priceRange.minVariantPrice.amount %}
+    {% set maxPrice = product.priceRange.maxVariantPrice.amount %}
+
+    {{ startDeck.next() | safe }}
+      {% include 'product_link.njk' %}
+    {{ endDeck.next() | safe }}
+  {% endfor %}
+</div>

@@ -1,0 +1,23 @@
+<div class="col-sm-12 col-md-6">
+  <div class="collection card border-0">
+    {% set image = collection.image %}
+    <a href="/collections/{{ collection.handle }}/">
+      {% if image %}
+      <img class="card-img-top" src="{{ image.originalSrc }}" alt="{{ image.altText }}">
+      {% else %}
+      <img class="card-img-top" src="/images/placeholder.png" alt="{{ collection.title }}">
+      {% endif %}
+    </a>
+    <div class="card-body text-right">
+      <h5 class="card-title">
+        <a href="/collections/{{ collection.handle }}/">{{ collection.title }}</a></h5>
+      <p class="card-text">
+        <small class="text-muted">
+          <a href="/collections/{{ collection.handle }}/">
+            <p>{{ collection.descriptionHTML }}</p>
+          </a>
+        </small>
+      </p>
+    </div>
+  </div>
+</div>

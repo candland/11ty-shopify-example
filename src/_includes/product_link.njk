@@ -1,0 +1,28 @@
+<div class="col-md-4">
+  <div class="product card border-0">
+    {% set image = product.images.edges | first %}
+    <a href="/products/{{ product.handle }}">
+      {% if image %}
+      <img class="card-img-top" src="{{ image.node.transformedSrc }}" alt="{{ product.name }}">
+      {% else %}
+      <img class="card-img-top" src="/images/placeholder.png" alt="{{ product.name }}">
+      {% endif %}
+    </a>
+    <div class="card-body text-right">
+      <h5 class="card-title">
+        <a href="/products/{{ product.handle }}">{{ product.title }}</a>
+      </h5>
+      <div class="price">
+        <small class="text-muted">
+          <a href="/products/{{ product.handle }}">
+            {% if minPrice == maxPrice %}
+            ${{ minPrice | fmtPrice }}
+            {% else %}
+            ${{ minPrice | fmtPrice }} - ${{ maxPrice | fmtPrice }}
+            {% endif %}
+          </a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>

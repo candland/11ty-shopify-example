@@ -1,0 +1,38 @@
+---
+layout: default
+title: Contact Us
+---
+
+
+<article class="contact row justify-content-center">
+  <div class="col-12 col-lg-7">
+    <h1>Say Hello!</h1>
+    <form
+      action="https://formspree.io/SIGNUP"
+      method="POST"
+    >
+      <input type="hidden" name="_next" value="https://11ty-shopify.com/thanks/"/>
+      <input type="text" name="_gotcha" class="d-none" />
+
+      <div class="form-group">
+        <label>Your name:</label>
+        <input class="form-control" type="text" name="name">
+      </div>
+
+      <div class="form-group">
+        <label>Your email:</label>
+        <input class="form-control" type="text" name="_replyto">
+      </div>
+
+
+      <div class="form-group">
+        <label>Your message:</label>
+        <textarea class="form-control" name="message"></textarea>
+      </div>
+
+      <!-- your other form fields go here -->
+
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </div>
+</article>

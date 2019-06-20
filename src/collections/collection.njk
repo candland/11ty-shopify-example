@@ -1,0 +1,37 @@
+---
+title: Collection
+layout: default
+tags:
+  - collections
+pagination:
+  data: colls
+  size: 1
+  alias: coll
+  addAllPagesToCollections: true
+permalink: collections/{{ coll.handle }}/index.html
+---
+
+<div class="crumbs">
+  <a href="/">home</a> /
+  {{ coll.title }}
+</div>
+
+<article class="collection" data-controller="collection">
+  <header class="mb-5 pb-5">
+    <img src="{{ coll.image.originalSrc }}" alt="{{ coll.image.altText }}" height="300" class="w100 img-fluid">
+    <h1>{{ coll.title }}</h1>
+    <p>{{ coll.descriptionHtml | safe }}
+  </header>
+
+  {% set startDeck = cycler("<div class=\"row mb-5\">", "", "") %}
+  {% set endDeck = cycler("", "", "</div>") %}
+  {% for productNode in coll.products.edges %}
+    {% set product = productNode.node %}
+    {% set minPrice = product.priceRange.minVariantPrice.amount %}
+    {% set maxPrice = product.priceRange.maxVariantPrice.amount %}
+
+    {{ startDeck.next() | safe }}
+      {% include 'product_link.njk' %}
+    {{ endDeck.next() | safe }}
+  {% endfor %}
+</article>

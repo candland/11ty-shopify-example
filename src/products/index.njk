@@ -1,0 +1,23 @@
+---
+title: Products
+layout: default
+---
+
+<div class="crumbs">
+  <a href="/">home</a> / products
+</div>
+
+<article class="products">
+  <h1>Products</h1>
+
+  {% set startDeck = cycler("<div class=\"row mb-5\">", "", "") %}
+  {% set endDeck = cycler("", "", "</div>") %}
+  {% for product in products %}
+    {% set minPrice = product.priceRange.minVariantPrice.amount %}
+    {% set maxPrice = product.priceRange.maxVariantPrice.amount %}
+
+    {{ startDeck.next() | safe }}
+      {% include 'product_link.njk' %}
+    {{ endDeck.next() | safe }}
+  {% endfor %}
+</article>

@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col">
+    <nav class="navbar navbar-expand-md">
+      <button aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarHeader" data-toggle="collapse" type="button">
+        <i class="fa fa-fs fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarHeader">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/collections/">
+              <i class="fa fa-cubes"></i>
+              collections
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="fa fa-user-secret"></i>
+              about
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/intent/user?screen_name={{ site.social.twitter }}" target="_blank">
+              <i class="fa fa-twitter"></i>
+              <span class="d-lg-none">twitter</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://facebook.com/11ty-shopify" target="_blank">
+              <i class="fa fa-facebook"></i>
+              <span class="d-lg-none">facebook</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://instagram.com/11ty-shopify" target="_blank">
+              <i class="fa fa-instagram"></i>
+              <span class="d-lg-none">instagram</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+<div class="row">
+  <div class="col" data-controller="cart">
+    <div data-toggle="collapse" class="btn-cart" aria-expanded="false" aria-controls="collapseCart" data-target="#collapseCart">
+      <div data-target="cart.summary">
+        <i class="fa fa-fw fa-shopping-cart"></i>
+      </div>
+    </div>
+
+    <div class="collapse" id="collapseCart">
+      <div data-target="cart.details">
+        Cart currently empty! Add some stuff!
+      </div>
+    </div>
+  </div>
+</div>

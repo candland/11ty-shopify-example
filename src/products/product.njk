@@ -1,0 +1,135 @@
+---
+title: {{ product.title }}
+tags:
+  - products
+layout: default
+pagination:
+  data: products
+  size: 1
+  alias: product
+  addAllPagesToCollections: true
+permalink: products/{{ product.handle }}/index.html
+priority: 0.9
+---
+
+<div class="crumbs">
+  <a href="/">home</a> /
+  {% for node in product.collections.edges %}
+  {% if node.node.handle != 'frontpage' %}
+  <a href="/collections/{{ node.node.handle }}/">{{ node.node.title }}</a> /
+  {% endif %}
+  {% endfor %}
+  {{ product.title }}
+</div>
+
+<article class="product" data-controller="product">
+  <h1>{{product.title}}</h1>
+
+  <div class="row">
+    <div class="col-12 col-lg-7">
+
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          {% for edge in product.images.edges %}
+          <div class="carousel-item {{ "active" if loop.first }}">
+              <img src="{{ edge.node.originalSrc }}"
+                   alt="{{ edge.node.altText }}"
+                   class="d-block w-100" />
+            </div>
+          {% endfor %}
+        </div>
+        {% if product.images.edges | length > 1 %}
+        <a class="carousel-control-prev text-primary" href="#carouselExampleControls" role="button" data-slide="prev">
+          <i class="fa fa-2x fa-chevron-left"></i>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next text-primary" href="#carouselExampleControls" role="button" data-slide="next">
+          <i class="fa fa-2x fa-chevron-right"></i>
+          <span class="sr-only">Next</span>
+        </a>
+        {% endif %}
+      </div>
+
+      <div class="social text-center my-3">
+        <a href="https://twitter.com/intent/tweet?text={{ product.title | urlencode }}&url={{ page.url | prepend(site.url) | urlencode }}&via={{ site.social.twitter }}&hashtags=11ty,shopify" target="_blank">
+          <i class="fa fa-fw fa-2x fa-twitter text-black-50"></i>
+        </a>
+        <a href="https://www.facebook.com/dialog/share?app_id={{ site.social.fb_appid }}&display=popup&href=&href={{ page.url | prepend(site.url)| urlencode }}" target="_blank">
+          <i class="fa fa-fw fa-2x fa-facebook text-black-50"></i>
+        </a>
+        <a href="https://www.pinterest.com/pin/create/button/?description={{ product.description | urlencode }}&url={{ page.url | prepend(site.url) | urlencode }}&media={{ product | productImage() }}" target="_blank">
+          <i class="fa fa-fw fa-2x fa-pinterest text-black-50"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-5">
+      <input type="hidden" name="productId" data-target="product.productId" value="{{ product.id }}"/>
+
+      {% set minPrice = product.priceRange.minVariantPrice.amount | fmtPrice %}
+      {% set maxPrice = product.priceRange.maxVariantPrice.amount | fmtPrice %}
+
+      <p>
+        {% if minPrice == maxPrice %}
+          $<span data-target="product.variantPrice">{{ minPrice | fmtPrice }}</span>
+        {% else %}
+          $<span data-target="product.variantPrice">{{ minPrice | fmtPrice }} - {{ maxPrice | fmtPrice }}</span>
+        {% endif %}
+      </p>
+
+      {% if (product.variants.edges | length) > 1 %}
+        {% set options = product.variants.edges | prodOptions %}
+
+        {% for name, values in options %}
+        <p>
+        {% for value in values %}
+        <button class="btn btn-sm btn-outline-secondary" data-action="product#updateOptions" data-name="{{name}}" data-value="{{value}}">{{value}}</button>
+        {% endfor %}
+        <br/>{{name}}: <span class="opt-value"></span>
+        </p>
+        {% endfor %}
+
+        <button class="btn btn-sm btn-primary"
+          data-target="product.cartButton"
+          data-action="product#add" disabled>Add to Cart</button>
+
+      {% else %}
+        {% set edge = product.variants.edges | first %}
+
+        {% if product.availableForSale %}
+        <button class="btn btn-sm btn-primary"
+          data-target="product.cartButton"
+          data-action="product#add"
+          data-id="{{edge.node.id}}"
+          data-options='{{ edge.node.selectedOptions | dump }}'>
+          {% if product.tags | isPreorder %}
+            Preorder!
+          {% else %}
+            Add to Cart
+          {% endif %}
+        </button>
+        {% endif %}
+        {% if (not product.availableForSale) or (product.tags | isPreorder) %}
+        <button class="btn btn-sm btn-secondary"
+                data-target="product.notifyMe"
+                data-action="product#notify" >Notify Me!</button>
+        {% endif %}
+
+      {% endif %}
+
+      <hr/>
+
+      <div class="product-description">{{ product.descriptionHtml | safe }}</div>
+
+      {% if product.tags | isPreorder %}
+        <aside class="preorder">
+        </aside>
+      {% endif %}
+
+      <hr/>
+
+      <div class="product-tags">{{ product.tags | join(", ") }}</div>
+    </div>
+
+  </div>
+</article>
